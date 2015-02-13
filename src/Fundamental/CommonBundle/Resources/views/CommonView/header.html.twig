@@ -18,7 +18,7 @@
     height: 250px;
 }
 </style>
-<div class="jumbotron blur">
+<div class="jumbotron blur" id="mainheader">
 	<div class="banner">
 	    <ul>
 	        <li><h1><strong>FAST</strong></h1></li>
@@ -32,7 +32,9 @@
 $(function() {
     $('.banner').unslider();
     $(window).resize(function() {
-    	$('.banner').unslider();
+        $.each($('.banner li'),function(key,val){
+        	$(val).width($('#mainheader').width());
+        });
   	});
 });
 </script>
