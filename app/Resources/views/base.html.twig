@@ -5,6 +5,17 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        
+		<!-- Bootstrap -->
+		<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+		<!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+		{% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+		<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+		<script src="{{ asset('js/jquery.js') }}"></script>
+		<!-- Include all JavaScripts, compiled by Assetic -->
+		<script src="{{ asset('js/bootstrap.js') }}"></script>
+		<!-- Include hinclude javascript library -->
+		<script src="{{ asset('js/hinclude.js') }}"></script>
     </head>
     <body>
         {% block body %}{% endblock %}

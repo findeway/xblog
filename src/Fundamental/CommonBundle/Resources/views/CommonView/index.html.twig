@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <!-- Navbar -->
+    {{ render_hinclude(controller('FundamentalCommonBundle:CommonView:nav')) }}
+    <!-- Header -->
+    {{ render(controller('FundamentalCommonBundle:CommonView:header')) }}
+    <!-- Content -->
+    <div class="container">
+        <p class="lead"><strong>Hello {{ name }}!</strong></p>
+    </div>
+{% endblock %}

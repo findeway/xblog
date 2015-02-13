@@ -1,0 +1,36 @@
+<!-- Global Navbar -->
+<style>
+.navbar-bottom-zero{
+	margin-bottom: 0px;
+}
+</style>
+<nav class="navbar navbar-inverse navbar-static-top navbar-bottom-zero" role='nagivation'>
+    <ul class="nav navbar-nav navbar-left">
+	{% for nav_key,nav_item in navigation['navcolumns'] %}
+	    <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{ nav_key }} <span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	        {% for expand_item in nav_item %}
+	            <li><a href="{{ expand_item['link'] }}">{{ expand_item['tag'] }}</a></li>            
+	        {% endfor %}
+	        </ul>
+	    </li>
+	{% endfor %}
+	</ul>
+	<form class="navbar-form navbar-left">
+	   <input type="text" class="form-control col-lg-2" placeholder="Search">
+	</form>
+{# 	direct ul with attribute navbar-right can cause padding 0 of navbar#}
+	<div class="navbar-collapse collapse navbar-right">
+		<ul class="nav navbar-nav">
+			<li class="dropdown">
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Settings <span class="caret"></span></a>
+		        <ul class="dropdown-menu">
+		        {% for expand_item in navigation['Settings'] %}
+		            <li><a href="{{ expand_item['link'] }}">{{ expand_item['tag'] }}</a></li>            
+		        {% endfor %}
+		        </ul>
+		    </li>
+	    </ul>
+    </div>
+</nav>

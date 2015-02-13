@@ -1,6 +1,10 @@
+content_article:
+    resource: "@ContentArticleBundle/Resources/config/routing.yml"
+    prefix:   /content
+
 fundamental_common:
     resource: "@FundamentalCommonBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /common
 
 app:
     resource: @AppBundle/Controller/

@@ -1,0 +1,7 @@
+content_article_homepage:
+    path:     /
+    defaults: { _controller: ContentArticleBundle:Article:index }
+    
+content_articles_tag:
+    path:     /article/tag/{tag}
+    defaults: { _controller: ContentArticleBundle:Article:tag }

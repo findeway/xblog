@@ -1,0 +1,35 @@
+{% stylesheets '@FundamentalCommonBundle/Resources/public/css/uislider.css' 
+               '@FundamentalCommonBundle/Resources/public/css/common.css'
+               '@FundamentalCommonBundle/Resources/public/css/header.css'
+%}
+    <link href="{{ asset_url  }}" rel="stylesheet" />
+{% endstylesheets %}
+{% javascripts '@FundamentalCommonBundle/Resources/public/js/uislider.min.js' %}
+    <script src="{{ asset_url  }}"></script>
+{% endjavascripts %}
+<style>
+.jumbotron
+{
+	background: url('{{ asset('bundles/fundamentalcommon/images/header_bg.png', version='1.0') }}') center;
+	background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height: 250px;
+}
+</style>
+<div class="jumbotron blur">
+	<div class="banner">
+	    <ul>
+	        <li><h1><strong>FAST</strong></h1></li>
+	        <li><h1><strong>RIGOROUS</strong></h1></li>
+	        <li><h1><strong>CREATIVE</strong></h1></li>
+	    </ul>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(function() {
+    $('.banner').unslider();
+});
+</script>
