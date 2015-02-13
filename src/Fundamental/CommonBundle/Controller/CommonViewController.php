@@ -23,12 +23,6 @@ class CommonViewController extends Controller
         $navigation = array(
             "titile" => "findeway",
             "navcolumns" => array(
-               "findeway" => array(
-                    array(
-                        "tag" => "me",
-                        "link" => "#"
-                    )
-               ),
                "Articles" => array(
                     array(
                         "tag" => "C++",
