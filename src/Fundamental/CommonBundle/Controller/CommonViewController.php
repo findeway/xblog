@@ -21,7 +21,7 @@ class CommonViewController extends Controller
     public function navAction()
     {
         $navigation = array(
-            "titile" => "findeway",
+            "title" => "findeway",
             "navcolumns" => array(
                "Articles" => array(
                     array(

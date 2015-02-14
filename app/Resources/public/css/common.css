@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+.vcenter {
+	  display: flex;
+	  align-items: center;     /* Align the flex-items vertically */
+	  justify-content: center;
+}
