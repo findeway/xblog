@@ -5,3 +5,11 @@ content_article_homepage:
 content_articles_tag:
     path:     /article/tag/{tag}
     defaults: { _controller: ContentArticleBundle:Article:tag }
+    
+content_articles_display:
+    path:     /article/display/{articleId}
+    defaults: { _controller: ContentArticleBundle:Article:display }
+    
+content_articles_create:
+    path:     /article/create
+    defaults: { _controller: ContentArticleBundle:Article:create }

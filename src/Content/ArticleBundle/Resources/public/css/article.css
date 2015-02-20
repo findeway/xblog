@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+.code-insertor {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	z-index: 25;
+	padding: 10px;
+}
+.codetype-selector {
+	min-width: 150px;
+	height: 30px;
+}
+.btnInsertCode-left {
+	display: inline;
+	margin-right: 10px;
+	float: left;
+}
+.btnInsertCode-right {
+	display: inline;
+	float: right;
+}
+
+.form-field {
+	margin-bottom: 15px;
+}
+
+textarea.form-control {
+	height: 300px;
+}

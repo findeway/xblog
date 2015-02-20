@@ -34,7 +34,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ FundamentalCommonBundle ]
+    bundles:        [ FundamentalCommonBundle, ContentArticleBundle]
     #java: /usr/bin/java
     filters:
         less:

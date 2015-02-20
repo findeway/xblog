@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+	{% block stylesheets %}
+	    <link href="{{ asset('css/common.css') }}" rel="stylesheet" />
+	{% endblock %}
+	<!-- Navbar -->
+	{{ render_hinclude(controller('FundamentalCommonBundle:CommonView:nav')) }}
+	
+{% stylesheets '@ContentArticleBundle/Resources/public/css/prism.css'
+               '@ContentArticleBundle/Resources/public/css/article.css'
+%}
+    <link href="{{ asset_url  }}" rel="stylesheet" />
+{% endstylesheets %}
+{% javascripts '@ContentArticleBundle/Resources/public/js/prism.js' %}
+    <script src="{{ asset_url  }}"></script>
+{% endjavascripts %}
+<div class="text-center">
+   <h2>{{ article.title|raw }}</h2>
+</div>
+<article>{{ article.content|raw }}</article>
+{% endblock %}
