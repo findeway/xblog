@@ -14,7 +14,7 @@
 {% javascripts '@ContentArticleBundle/Resources/public/js/prism.js' %}
     <script src="{{ asset_url  }}"></script>
 {% endjavascripts %}
- {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+ {{ form_start(form,{'attr': {'novalidate': 'novalidate','class':'article-content'}}) }}
       <div class="container-fluid">
 	      {{ form_errors(form) }}
 	      <div class="row-fluid col-md-offset-3 col-md-6 form-field">
