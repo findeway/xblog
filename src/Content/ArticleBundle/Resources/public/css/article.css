@@ -28,6 +28,10 @@ textarea.form-control {
 	height: 300px;
 }
 
-.article-content {
+.page-content {
 	margin-top: 100px;
+}
+
+.article-content {
+	margin-top: 80px;
 }

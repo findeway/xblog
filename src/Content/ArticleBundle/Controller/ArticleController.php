@@ -12,16 +12,6 @@ class ArticleController extends Controller
         return $this->render('ContentArticleBundle:Article:index.html.twig', array('name' => $name));
     }
     
-    public function tagAction($tag)
-    {
-        $articleList = array();
-        return $this->render('ContentArticleBundle:Article:article.list.html.twig',array(
-                'tag' => $tag,
-                'articles' => $articleList
-            )
-        );
-    }
-    
     public function createAction()
     {
         $newArticle = new Article();
@@ -64,5 +54,32 @@ class ArticleController extends Controller
         }else{
             return $this->render('ContentArticleBundle:Article:article.display.html.twig',array('article' => $article));
         }
+    }
+    
+    public function searchAction()
+    {
+        $keywords = $this->getRequest()->query->get('keywords');
+        $repository = $this->getDoctrine()->getRepository('ContentArticleBundle:Article');
+        $query = $repository->createQueryBuilder('a')->where('a.title like :keywords')
+                    ->setParameter('keywords','%'.$keywords.'%')
+                    ->orderBy('a.updateDateTime','ASC')
+                    ->getQuery();
+        $articlesResult = $query->getResult();
+        return $this->render('ContentArticleBundle:Article:article.list.html.twig',array('articles' => $articlesResult));
+    }
+    
+    public function tagAction($tag)
+    {
+        $repository = $this->getDoctrine()->getRepository('ContentArticleBundle:Article');
+        if(empty($tag)){
+            $articlesResult = $repository->findAll();        
+        }else{
+            $query = $repository->createQueryBuilder('a')->where('a.tags like :tag')
+                    ->setParameter('tag','%'.$tag.'%')
+                    ->orderBy('a.updateDateTime','ASC')
+                    ->getQuery();
+            $articlesResult = $query->getResult();
+        }
+        return $this->render('ContentArticleBundle:Article:article.list.html.twig',array('articles' => $articlesResult));
     }
 }

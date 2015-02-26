@@ -1,10 +1,6 @@
-content_article_homepage:
+content_articles_homepage:
     path:     /
     defaults: { _controller: ContentArticleBundle:Article:index }
-    
-content_articles_tag:
-    path:     /article/tag/{tag}
-    defaults: { _controller: ContentArticleBundle:Article:tag }
     
 content_articles_display:
     path:     /article/display/{articleId}
@@ -13,3 +9,10 @@ content_articles_display:
 content_articles_create:
     path:     /article/create
     defaults: { _controller: ContentArticleBundle:Article:create }
+        
+content_articles_tag:
+    path:    /article/tag/{tag}
+    defaults: { _controller: ContentArticleBundle:Article:tag }
+content_articles_search:
+    path:    /article/search
+    defaults: { _controller: ContentArticleBundle:Article:search }

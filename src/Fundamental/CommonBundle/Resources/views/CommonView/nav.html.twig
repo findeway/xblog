@@ -1,10 +1,5 @@
 <!-- Global Navbar -->
-<style>
-.navbar-bottom-zero{
-	margin-bottom: 0px;
-}
-</style>
-<div class="navbar navbar-default navbar-fixed-top navbar-bottom-zero">
+<div class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -29,8 +24,8 @@
 			    </li>
 			{% endfor %}
 			</ul>
-			<form class="navbar-form navbar-left">
-			   <input type="text" class="form-control col-lg-2" placeholder="Search">
+			<form class="navbar-form navbar-left" role="search" action={{ navigation["searchAction"]["action"] }}>
+	         	<input type="text" placeholder="Search" class="form-control col-lg-2" name="keywords">
 			</form>
 		{# 	direct ul with attribute navbar-right can cause padding 0 of navbar#}
 			<div class="navbar-right">

@@ -45,9 +45,12 @@ class CommonViewController extends Controller
             "Settings" => array(
                 array(
                     "tag" => "Profile",
-                    "link" => $this->generateUrl("content_article_homepage")
+                    "link" => $this->generateUrl("content_articles_homepage")
                 )
-            )
+            ),
+            "searchAction" => array(
+                "action" => $this->generateUrl ( 'content_articles_search' )
+            ),
         );
         return $this->render('FundamentalCommonBundle:CommonView:nav.html.twig',array("navigation" => $navigation));
     }

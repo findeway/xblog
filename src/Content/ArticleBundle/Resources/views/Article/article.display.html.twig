@@ -14,8 +14,19 @@
 {% javascripts '@ContentArticleBundle/Resources/public/js/prism.js' %}
     <script src="{{ asset_url  }}"></script>
 {% endjavascripts %}
-<div class="text-center article-content">
-   <h2>{{ article.title|raw }}</h2>
-</div>
-<article>{{ article.content|raw }}</article>
+	<div class="text-center page-content">
+	   <h2>{{ article.title|raw }}</h2>
+	</div>
+    <div class="row">
+    	<div class="col-md-offset-2 col-md-7">
+    	   {% for tag in article.tags|split(' ') %}
+	    	  <a href="">{{ tag }}</a>
+	       {% endfor %}
+    	</div>
+    	<div class="col-md-3">
+    		<p class="text-warning">Updated By: {{ article.author }}</p>
+            <p class="text-muted">{{ article.updateDateTime|date("Y/m/d H:i:s") }}</p>
+    	</div>   
+    </div>
+<article class="article-content lead">{{ article.content|raw }}</article>
 {% endblock %}
