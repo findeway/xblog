@@ -1,6 +1,6 @@
 content_articles_homepage:
     path:     /
-    defaults: { _controller: ContentArticleBundle:Article:index }
+    defaults: { _controller: ContentArticleBundle:Article:index, name:Quinn }
     
 content_articles_display:
     path:     /article/display/{articleId}

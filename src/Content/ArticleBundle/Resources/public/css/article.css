@@ -32,6 +32,12 @@ textarea.form-control {
 	margin-top: 80px;
 }
 
+.article-header{
+	margin-left:40px;
+	margin-right:40px;
+	margin-top:30px;
+}
+
 .article-content {
 	margin-left:40px;
 	margin-right:40px;
