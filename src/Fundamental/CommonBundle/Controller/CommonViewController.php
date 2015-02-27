@@ -42,6 +42,10 @@ class CommonViewController extends Controller
                    array(
                        "tag" => "Javascript",
                        "link" => $this->generateUrl("content_articles_tag",array('tag' => "Javascript"))
+                   ),
+                   array(
+                       "tag" => "New",
+                       "link" => $this->generateUrl("content_articles_create",array())
                    )
                )
             ),
