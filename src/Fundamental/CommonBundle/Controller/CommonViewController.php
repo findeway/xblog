@@ -21,7 +21,10 @@ class CommonViewController extends Controller
     public function navAction()
     {
         $navigation = array(
-            "title" => "findeway",
+            "title" => array(
+                "name" => "findeway",
+                "url" => $this->generateUrl('fundamental_common_homepage',array('name' => 'findeway')),
+            ),
             "navcolumns" => array(
                "Articles" => array(
                     array(

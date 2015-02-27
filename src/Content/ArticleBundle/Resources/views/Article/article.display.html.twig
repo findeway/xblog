@@ -20,7 +20,7 @@
     <div class="row article-header">
     	<div class="col-md-9">
     	   {% for tag in article.tags|split(' ') %}
-	    	  <a href="#" ><strong class="alert alert-success">{{ tag }}</strong></a>
+	    	  <a href="{{ path('content_articles_tag', {'tag': tag}) }}" ><strong class="alert alert-success">{{ tag }}</strong></a>
 	       {% endfor %}
     	</div>
     	<div class="col-md-3">
