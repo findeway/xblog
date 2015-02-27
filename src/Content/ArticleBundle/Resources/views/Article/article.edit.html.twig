@@ -14,6 +14,7 @@
 {% javascripts '@ContentArticleBundle/Resources/public/js/prism.js' %}
     <script src="{{ asset_url  }}"></script>
 {% endjavascripts %}
+ {% form_theme form 'ContentArticleBundle:Article:bootstrap_3_layout_article.html.twig' %}
  {{ form_start(form,{'attr': {'novalidate': 'novalidate','class':'page-content'}}) }}
       <div class="container-fluid">
 	      {{ form_errors(form) }}
