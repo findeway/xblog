@@ -17,8 +17,9 @@ content_articles_edit:
         title: "[a-zA-Z]+"
            
 content_articles_delete:
-    path:     /article/delete/{articleId}
+    path:     /article/delete
     defaults: { _controller: ContentArticleBundle:Article:delete }
+    methods:  [POST]
     requirements:
         title: "[a-zA-Z]+"
         

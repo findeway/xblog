@@ -17,6 +17,12 @@
     <script type="text/javascript">
     function deleteArticle()
     {
+        $.post("{{ path('content_articles_delete') }}",
+                { articleId:"{{ article.articleId }}" },
+                function(data,status){
+                    window.location.href = "{{ path('content_articles_search', {'keywords': ''}) }}";
+                }
+        );
     }
     </script>
 	<div class="text-center page-content">
@@ -31,7 +37,7 @@
     	<div class="col-md-3">
     	    <div class="col-md-3">
 		        <a href="{{ path('content_articles_edit', {'articleId': article.articleId}) }}" ><span class="article-control glyphicon glyphicon-pencil"></span></a>
-	            <a href="{{ path('content_articles_delete', {'articleId': article.articleId}) }}" ><span class="article-control glyphicon glyphicon-remove"></span></a>
+	            <a href="javascript:void(0)" onclick="deleteArticle();" ><span class="article-control glyphicon glyphicon-remove"></span></a>
     		</div>
     		<div class="col-md-9">
 	    		<strong class="text-success">Updated By: {{ article.author }}</strong>

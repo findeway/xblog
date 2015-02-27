@@ -86,9 +86,9 @@ class ArticleController extends Controller
         }
     }
     
-    public function deleteAction($articleId)
+    public function deleteAction()
     {
-//         $articleId = $this->getRequest()->request->get('articleId');
+        $articleId = $this->getRequest()->request->get('articleId');
         $repository = $this->getDoctrine()->getRepository('ContentArticleBundle:Article');
         $article = $repository->findOneBy(array(
             'articleId' => $articleId
