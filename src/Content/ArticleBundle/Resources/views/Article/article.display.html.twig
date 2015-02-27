@@ -18,12 +18,13 @@
 	   <h2>{{ article.title|raw }}</h2>
 	</div>
     <div class="row article-header">
-    	<div class="col-md-9">
+    	<div class="col-md-7">
     	   {% for tag in article.tags|split(' ') %}
-	    	  <a href="{{ path('content_articles_tag', {'tag': tag}) }}" ><strong class="alert alert-success">{{ tag }}</strong></a>
+	    	  <a href="{{ path('content_articles_tag', {'tag': tag}) }}" ><strong class="btn btn-success">{{ tag }}</strong></a>
 	       {% endfor %}
     	</div>
-    	<div class="col-md-3">
+    	<div class="col-md-5">
+	        <a href="{{ path('content_articles_edit', {'id': article.articleId}) }}" ><strong class="btn btn-warning">Edit</strong></a>
     		<strong class="text-success">Updated By: {{ article.author }}</strong>
             <strong class="text-muted">{{ article.updateDateTime|date("Y/m/d H:i:s") }}</strong>
     	</div>   

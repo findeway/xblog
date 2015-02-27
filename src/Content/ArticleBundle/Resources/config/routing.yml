@@ -9,7 +9,13 @@ content_articles_display:
 content_articles_create:
     path:     /article/create
     defaults: { _controller: ContentArticleBundle:Article:create }
-        
+
+content_articles_edit:
+    path:     /article/edit/{id}
+    defaults: { _controller: ContentArticleBundle:Article:edit }
+    requirements:
+        title: "[a-zA-Z]+"
+           
 content_articles_tag:
     path:    /article/tag/{tag}
     defaults: { _controller: ContentArticleBundle:Article:tag }

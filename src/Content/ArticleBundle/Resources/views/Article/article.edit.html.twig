@@ -1,0 +1,89 @@
+{% extends '::base.html.twig' %} 
+{% block body %}
+	{% block stylesheets %}
+	    <link href="{{ asset('css/common.css') }}" rel="stylesheet" />
+	{% endblock %}
+	<!-- Navbar -->
+	{{ render_hinclude(controller('FundamentalCommonBundle:CommonView:nav')) }}
+	
+{% stylesheets '@ContentArticleBundle/Resources/public/css/prism.css'
+               '@ContentArticleBundle/Resources/public/css/article.css'
+%}
+    <link href="{{ asset_url  }}" rel="stylesheet" />
+{% endstylesheets %}
+{% javascripts '@ContentArticleBundle/Resources/public/js/prism.js' %}
+    <script src="{{ asset_url  }}"></script>
+{% endjavascripts %}
+ {{ form_start(form,{'attr': {'novalidate': 'novalidate','class':'page-content'}}) }}
+      <div class="container-fluid">
+	      {{ form_errors(form) }}
+	      <div class="row-fluid col-md-offset-3 col-md-6 form-field">
+	          {{ form_label(form.title) }}
+	          {{ form_widget(form.title,{'attr': {'class': ''}}) }}
+	          {{ form_errors(form.title,{'attr': {'class': ''}}) }}
+	      </div>
+	      <div class="row-fluid col-md-offset-3 col-md-6 form-field">
+	          {{ form_label(form.tags) }}
+	          {{ form_widget(form.tags,{'attr': {'class': ''}}) }}
+	          {{ form_errors(form.tags,{'attr': {'class': ''}}) }}
+	      </div>
+	      <div class="row-fluid col-md-offset-3 col-md-6 form-field">
+	          {{ form_label(form.author) }}
+	          {{ form_widget(form.author,{'attr': {'class': ''}}) }}
+	          {{ form_errors(form.author,{'attr': {'class': ''}}) }}
+	      </div>
+	      <div class="row-fluid col-md-offset-3 col-md-6 form-field">
+	          {{ form_label(form.rate) }}
+	          {{ form_widget(form.rate,{'attr': {'class': ''}}) }}
+	          {{ form_errors(form.rate,{'attr': {'class': ''}}) }}
+	      </div>
+	      <div class="row-fluid col-md-offset-3 col-md-6 form-field">
+	          {{ form_label(form.content) }}
+	          {{ form_widget(form.content,{'attr': {'class': ''}}) }}
+	          {{ form_errors(form.content,{'attr': {'class': ''}}) }}
+	          <div class="code-insertor">
+	              <div class="btnInsertCode-left">
+			          <select id="selCodeType" class="codetype-selector">
+			              <option value="language-cpp">C++</option>
+			              <option value="language-php">PHP</option>
+			              <option value="language-javascript">Javascript</option>
+			              <option value="language-java">Java</option>
+			              <option value="upload-pic">Image</option>
+			          </select>
+		          </div>
+		          <div class="btnInsertCode-right">
+		          	<a id="btnInsertCode" onclick="onInsertCode();" class="btn btn-warning btn-sm" >insert temlate</a>
+		          </div>
+	          </div>
+	      </div>
+	      <div class="row-fluid col-md-offset-3 col-md-6 form-field">
+	        {{ form_widget(form.save,{'attr': {'class': 'col-md-12 btn btn-success'}}) }}
+	      </div>
+      </div>
+  {{ form_end(form) }}
+  <div id="uploadFileForm" class="drop-shadow popup-window"></div>
+  <script type="text/javascript">
+  	  var codeType = "language-cpp";
+      $("#selCodeType").change(function(){
+    	  codeType = $("#selCodeType option:selected").val();
+      });
+      function onInsertCode(){
+          if(codeType != "upload-pic"){
+	          var codeTemplate='<pre class="line-numbers '+codeType+'">\n\t<code class="'+codeType+'">\n\t</code>\n</pre>';
+	    	  $("#form_content").val($("#form_content").val()+codeTemplate);
+          }else{
+        	  $('#uploadFileForm').bPopup({
+        		  content:'ajax',
+        		  modal:'true',
+                  loadUrl: '/app_dev.php/content/article/upload',
+                  speed: 650,
+                  transition: 'slideIn',
+          	      transitionClose: 'slideBack',
+          	      follow:[false,false],
+            	  contentContainer:'uploadContainer'
+              });
+          }
+    	  return false;
+      }
+  </script>
+{% endblock %}

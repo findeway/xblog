@@ -43,6 +43,36 @@ class ArticleController extends Controller
         
     }
     
+    public function editAction($id)
+    {
+        $articleRepository = $this->getDoctrine()->getRepository('ContentArticleBundle:Article');
+        $articleResult = $articleRepository->findOneByArticleId($id);
+        $editForm = $this->createFormBuilder ( $articleResult )
+        ->add ( 'title', 'text' )
+        ->add ( 'rate', 'number' )
+        ->add ( 'tags', 'text' )
+        ->add ( 'author', 'text' )
+        ->add ( 'content', 'textarea' )
+        ->add ( 'save', 'submit',
+            array (
+                'label' => 'save'
+        
+            )
+        )->getForm ();
+        $editForm->handleRequest ( $this->getRequest () );
+        if($editForm->isValid()){
+            $curDateTime = new \DateTime();
+            $articleResult->setUpdateDateTime($curDateTime);
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            return $this->redirect($articleResult->getUrl());
+        }else{
+            return $this->render('ContentArticleBundle:Article:article.edit.html.twig',array(
+                'form' => $editForm->createView()
+            ));
+        }
+    }
+    
     public function displayAction($articleId)
     {
         $repository = $this->getDoctrine()->getRepository('ContentArticleBundle:Article');
