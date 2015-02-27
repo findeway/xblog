@@ -1,4 +1,8 @@
 {% extends '::base.html.twig' %} {% block body %}
+{% stylesheets '@FundamentalCommonBundle/Resources/public/css/index.css' %}
+    <link href="{{ asset_url  }}" rel="stylesheet" />
+{% endstylesheets %}
+
 {% block stylesheets %}
     <link href="{{ asset('css/common.css') }}" rel="stylesheet" />
 {% endblock %}
@@ -6,12 +10,10 @@
 {{ render_hinclude(controller('FundamentalCommonBundle:CommonView:nav'))
 }}
 <!-- Header -->
-{{ render(controller('FundamentalCommonBundle:CommonView:header')) }}
+<div class="header">
+    {{ render(controller('FundamentalCommonBundle:CommonView:header')) }}
+</div>
 <!-- Content -->
-{% stylesheets '@FundamentalCommonBundle/Resources/public/css/index.css' %}
-    <link href="{{ asset_url  }}" rel="stylesheet" />
-{% endstylesheets %}
-
 <div class="container-fluid tags-container">
     <div class="row-fluid">
 		<p class="lead">
