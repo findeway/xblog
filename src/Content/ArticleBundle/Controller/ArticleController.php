@@ -43,10 +43,10 @@ class ArticleController extends Controller
         
     }
     
-    public function editAction($id)
+    public function editAction($articleId)
     {
         $articleRepository = $this->getDoctrine()->getRepository('ContentArticleBundle:Article');
-        $articleResult = $articleRepository->findOneByArticleId($id);
+        $articleResult = $articleRepository->findOneByArticleId($articleId);
         $editForm = $this->createFormBuilder ( $articleResult )
         ->add ( 'title', 'text' )
         ->add ( 'rate', 'number' )
@@ -84,6 +84,19 @@ class ArticleController extends Controller
         }else{
             return $this->render('ContentArticleBundle:Article:article.display.html.twig',array('article' => $article));
         }
+    }
+    
+    public function deleteAction($articleId)
+    {
+//         $articleId = $this->getRequest()->request->get('articleId');
+        $repository = $this->getDoctrine()->getRepository('ContentArticleBundle:Article');
+        $article = $repository->findOneBy(array(
+            'articleId' => $articleId
+        ));
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($article);
+        $em->flush();
+        return $this->redirect($this->generateUrl('content_articles_search',array('keywords' => '')));
     }
     
     public function searchAction()

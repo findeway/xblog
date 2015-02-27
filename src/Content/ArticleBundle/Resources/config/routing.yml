@@ -11,11 +11,17 @@ content_articles_create:
     defaults: { _controller: ContentArticleBundle:Article:create }
 
 content_articles_edit:
-    path:     /article/edit/{id}
+    path:     /article/edit/{articleId}
     defaults: { _controller: ContentArticleBundle:Article:edit }
     requirements:
         title: "[a-zA-Z]+"
            
+content_articles_delete:
+    path:     /article/delete/{articleId}
+    defaults: { _controller: ContentArticleBundle:Article:delete }
+    requirements:
+        title: "[a-zA-Z]+"
+        
 content_articles_tag:
     path:    /article/tag/{tag}
     defaults: { _controller: ContentArticleBundle:Article:tag }
