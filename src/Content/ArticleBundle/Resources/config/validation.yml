@@ -1,0 +1,17 @@
+#src/Blog/ContentBundle/Resources/config/validation.yml
+Content\ArticleBundle\Entity\Article:
+    properties:
+        title:
+            - NotBlank: ~
+        createDateTime:
+            - NotNull: ~
+            - Type: \DateTime
+        updateDateTime:
+            - Type: \DateTime
+        rate:
+            - GreaterThanOrEqual: 0.0
+            - LessThanOrEqual: 10.0
+        author:
+            - NotBlank: ~
+        content:
+            - NotBlank: ~
