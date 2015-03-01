@@ -48,6 +48,18 @@ assetic:
             bin: "%kernel.root_dir%/Resources/node_modules/.bin/uglifyjs"
         uglifycss:  
             bin: "%kernel.root_dir%/Resources/node_modules/.bin/uglifycss"  
+        jpegoptim:
+            bin: /usr/local/bin/jpegoptim
+            apply_to: "\.jpe?g$"
+            max: 70
+        optipng:
+            bin: /usr/bin/optipng
+            apply_to: "\.png$"
+            level:    3
+    twig:
+        functions:
+            jpegoptim: { output: images/*.jpg }
+            optipng: { output: images/*.png }
     assets:
         bootstrap_css:
             inputs:
