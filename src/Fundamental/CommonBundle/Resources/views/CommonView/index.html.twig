@@ -1,5 +1,5 @@
 {% extends '::base.html.twig' %} {% block body %}
-{% stylesheets '@FundamentalCommonBundle/Resources/public/css/index.css' %}
+{% stylesheets '@FundamentalCommonBundle/Resources/public/css/index.css' filter="uglifycss" %}
     <link href="{{ asset_url  }}" rel="stylesheet" />
 {% endstylesheets %}
 

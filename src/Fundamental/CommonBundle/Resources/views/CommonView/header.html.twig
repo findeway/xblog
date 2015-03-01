@@ -1,10 +1,11 @@
 {% stylesheets '@FundamentalCommonBundle/Resources/public/css/uislider.css' 
                '@FundamentalCommonBundle/Resources/public/css/common.css'
                '@FundamentalCommonBundle/Resources/public/css/header.css'
+   filter="uglifycss"
 %}
     <link href="{{ asset_url  }}" rel="stylesheet" />
 {% endstylesheets %}
-{% javascripts '@FundamentalCommonBundle/Resources/public/js/uislider.min.js' %}
+{% javascripts '@FundamentalCommonBundle/Resources/public/js/uislider.min.js' filter="uglifyjs2" %}
     <script src="{{ asset_url  }}"></script>
 {% endjavascripts %}
 <style>

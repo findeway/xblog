@@ -7,6 +7,7 @@
 	{{ render_hinclude(controller('FundamentalCommonBundle:CommonView:nav')) }}
 {% stylesheets '@ContentArticleBundle/Resources/public/css/animation.css'
                '@ContentArticleBundle/Resources/public/css/article.css'
+                filter="uglifycss" 
 %}
     <link href="{{ asset_url  }}" rel="stylesheet" />
 {% endstylesheets %}

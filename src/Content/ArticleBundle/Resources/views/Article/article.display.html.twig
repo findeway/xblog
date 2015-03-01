@@ -8,10 +8,11 @@
 	
 {% stylesheets '@ContentArticleBundle/Resources/public/css/prism.css'
                '@ContentArticleBundle/Resources/public/css/article.css'
+                filter="uglifycss" 
 %}
     <link href="{{ asset_url  }}" rel="stylesheet" />
 {% endstylesheets %}
-{% javascripts '@ContentArticleBundle/Resources/public/js/prism.js' %}
+{% javascripts '@ContentArticleBundle/Resources/public/js/prism.js'  filter="uglifyjs2" %}
     <script src="{{ asset_url  }}"></script>
 {% endjavascripts %}
     <script type="text/javascript">
