@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Fundamental\CommonBundle\FundamentalCommonBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Content\ArticleBundle\ContentArticleBundle(),
+            new Content\UploadBundle\ContentUploadBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

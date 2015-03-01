@@ -1,3 +1,7 @@
+content_upload:
+    resource: "@ContentUploadBundle/Resources/config/routing.yml"
+    prefix:   /
+
 content_article:
     resource: "@ContentArticleBundle/Resources/config/routing.yml"
     prefix:   /content
