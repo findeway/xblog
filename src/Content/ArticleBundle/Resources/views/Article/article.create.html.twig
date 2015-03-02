@@ -44,17 +44,9 @@
 	          {{ form_widget(form.content,{'attr': {'class': ''}}) }}
 	          {{ form_errors(form.content,{'attr': {'class': ''}}) }}
 	          <div class="code-insertor">
-	              <div class="btnInsertCode-left">
-			          <select id="selCodeType" class="codetype-selector">
-			              <option value="language-cpp">C++</option>
-			              <option value="language-php">PHP</option>
-			              <option value="language-javascript">Javascript</option>
-			              <option value="language-java">Java</option>
-			              <option value="upload-pic">Image</option>
-			          </select>
-		          </div>
 		          <div class="btnInsertCode-right">
-		          	<a id="btnInsertCode" onclick="onInsertCode();" class="btn btn-warning btn-sm" >insert temlate</a>
+		            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCode">Code</button>
+		            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalImage">Image</button>
 		          </div>
 	          </div>
 	      </div>
@@ -63,29 +55,70 @@
 	      </div>
       </div>
   {{ form_end(form) }}
-  <div id="uploadFileForm" class="drop-shadow popup-window"></div>
   <script type="text/javascript">
   	  var codeType = "language-cpp";
-      $("#selCodeType").change(function(){
-    	  codeType = $("#selCodeType option:selected").val();
+      $("#language-name").change(function(){
+    	  codeType = $("#language-name option:selected").val();
       });
       function onInsertCode(){
-          if(codeType != "upload-pic"){
-	          var codeTemplate='<pre class="line-numbers '+codeType+'">\n\t<code class="'+codeType+'">\n\t</code>\n</pre>';
-	    	  $("#form_content").val($("#form_content").val()+codeTemplate);
-          }else{
-        	  $('#uploadFileForm').bPopup({
-        		  content:'ajax',
-        		  modal:'true',
-                  loadUrl: '/app_dev.php/content/article/upload',
-                  speed: 650,
-                  transition: 'slideIn',
-          	      transitionClose: 'slideBack',
-          	      follow:[false,false],
-            	  contentContainer:'uploadContainer'
-              });
-          }
-    	  return false;
+          var codeTemplate='<pre class="line-numbers '+codeType+'">\n\t<code class="'+codeType+'">\n\t'+$("#code-content").val()+'\n\t</code>\n</pre>';
+    	  $("#form_content").val(codeTemplate);
+      }
+      function onUploadImage(){
+         
       }
   </script>
+    <!-- modal for code editor -->
+    <div class="modal fade" id="modalCode" tabindex="-1" role="dialog">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="codeModalLabel">Insert Code</h4>
+	      </div>
+	      <div class="modal-body">
+	          <div class="form-group">
+	            <label for="language-name" class="control-label">Language:</label>
+	            <select class="form-control" id="language-name">
+	                <option value="language-cpp">C++</option>
+	                <option value="language-php">PHP</option>
+	                <option value="language-java">Java</option>
+	                <option value="language-javascript">Javascript</option>
+	            </select>
+	          </div>
+	          <div class="form-group">
+	            <label for="code-content" class="control-label">Message:</label>
+	            <textarea class="form-control" id="code-content"></textarea>
+	          </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	        <button type="button" class="btn btn-success" onclick="onInsertCode();" data-dismiss="modal">Insert</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- modal for image upload -->
+    <div class="modal fade" id="modalImage" tabindex="-1" role="dialog">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="imageModalLabel">Upload Image</h4>
+		      </div>
+		      <form action="{{ url('content_upload_image') }}">
+			      <div class="modal-body">
+			          <div class="form-group">
+			            <label for="image-file" class="control-label">Select File: </label>
+			            <input type="file" class="form-control" id="image-file" name="uploadedImage">
+			          </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="submit" class="btn btn-success" data-dismiss="modal" onclick="onUploadImage();">Upload</button>
+			      </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
 {% endblock %}
