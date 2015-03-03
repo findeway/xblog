@@ -1,3 +1,7 @@
 content_upload_image:
     path:     /upload/image
     defaults: { _controller: ContentUploadBundle:Upload:uploadImage }
+content_show_image:
+    path:     /show/image/{fileName}
+    defaults: { _controller: ContentUploadBundle:Upload:showImage }
+    

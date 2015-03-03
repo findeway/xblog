@@ -74,7 +74,7 @@
     	  $("#form_content").val(codeTemplate);
       }
       function onUploadImage(){
-         
+         $("#modalImage").modal('hide');
       }
   </script>
     <!-- modal for code editor -->
@@ -115,7 +115,7 @@
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        <h4 class="modal-title" id="imageModalLabel">Upload Image</h4>
 		      </div>
-		      <form action="{{ url('content_upload_image') }}">
+		      <form action="{{ path('content_upload_image') }}" method="POST" enctype="multipart/form-data">
 			      <div class="modal-body">
 			          <div class="form-group">
 			            <label for="image-file" class="control-label">Select File: </label>
@@ -124,7 +124,7 @@
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="submit" class="btn btn-success" data-dismiss="modal" onclick="onUploadImage();">Upload</button>
+			        <button type="submit" class="btn btn-success" onclick="onUploadImage();">Upload</button>
 			      </div>
 		      </form>
 		    </div>
