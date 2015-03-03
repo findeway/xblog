@@ -36,7 +36,7 @@ class ArticleController extends Controller
             $em->flush();
             return $this->redirect($newArticle->getUrl());
         }else{
-            return $this->render('ContentArticleBundle:Article:article.create.html.twig',array(
+            return $this->render('ContentArticleBundle:Article:article.edit.html.twig',array(
                 'form' => $createForm->createView()
             ));
         }

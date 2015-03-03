@@ -65,17 +65,37 @@
   <script type="text/javascript">
       //change upload plugin params;
       $.fn.fileinput.defaults.showUpload = false;
+      
   	  var codeType = "language-cpp";
       $("#language-name").change(function(){
     	  codeType = $("#language-name option:selected").val();
       });
       function onInsertCode(){
-          var codeTemplate='<pre class="line-numbers '+codeType+'">\n\t<code class="'+codeType+'">\n\t'+$("#code-content").val()+'\n\t</code>\n</pre>';
-    	  $("#form_content").val(codeTemplate);
+          var content = $('#form_content').val();
+          var codeTemplate='<pre class="line-numbers '+codeType+'">\n<code class="'+codeType+'">\n'+$("#code-content").val()+'\n</code>\n</pre>';
+          codeTemplate = codeTemplate.replace(/\n/g,'\n\t');
+    	  $("#form_content").val(content+'\n'+codeTemplate);
       }
-      function onUploadImage(){
-         $("#modalImage").modal('hide');
-      }
+      $(document).ready(function(){
+    	  $('#formImageUpload').submit(function(event) {
+        	    var $form = $(this);
+                $.ajax({
+                    type: $form.attr('method'),
+                    url: $form.attr('action'),
+                    data: new FormData(this),
+                    mimeType:"multipart/form-data",
+                    contentType: false,
+                    processData:false,
+                    success: function(data) {
+                    	var content = $('#form_content').val();
+                        var imageTemplate='<img src="'+data+'">'
+                    	$("#form_content").val(content+'\n'+imageTemplate);
+                    }
+                });
+                $("#modalImage").modal('hide');
+                event.preventDefault();
+          });
+      });
   </script>
     <!-- modal for code editor -->
     <div class="modal fade" id="modalCode" tabindex="-1" role="dialog">
@@ -115,7 +135,7 @@
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        <h4 class="modal-title" id="imageModalLabel">Upload Image</h4>
 		      </div>
-		      <form action="{{ path('content_upload_image') }}" method="POST" enctype="multipart/form-data">
+		      <form id="formImageUpload" action="{{ path('content_upload_image') }}" method="POST" enctype="multipart/form-data" data-async>
 			      <div class="modal-body">
 			          <div class="form-group">
 			            <label for="image-file" class="control-label">Select File: </label>
@@ -124,7 +144,7 @@
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="submit" class="btn btn-success" onclick="onUploadImage();">Upload</button>
+			        <button type="submit" class="btn btn-success">Upload</button>
 			      </div>
 		      </form>
 		    </div>
