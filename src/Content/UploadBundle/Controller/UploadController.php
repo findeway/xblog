@@ -9,6 +9,6 @@ class UploadController extends Controller
     public function uploadImageAction()
     {
         $file = $this->getRequest()->files->get('uploadedImage');
-        return $this->render('ContentUploadBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('ContentUploadBundle:Default:upload.html.twig', array('name' => $file));
     }
 }

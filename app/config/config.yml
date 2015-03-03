@@ -88,6 +88,14 @@ assetic:
             filters:
                 - uglifyjs2
             output: js/bootstrap.js
+        bootstrap_fileinput_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/kartik-v/bootstrap-fileinput/js/fileinput.min.js 
+            output: js/bootstrap.fileinput.js
+        bootstrap_fileinput_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/kartik-v/bootstrap-fileinput/css/fileinput.min.css 
+            output: css/bootstrap.fileinput.css
         jquery:
             inputs:
                 - %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.11.1.js
