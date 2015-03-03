@@ -175,11 +175,9 @@ class UploadImage
     {
         $this->file = $file;
         // check if we have an old image path
-        if (isset($this->filepath)) {
+        if (!empty($this->filepath)) {
             // store the old name to delete after the update
             $this->tempPath = $this->filepath;
-            $this->filepath = null;
-        } else {
             $this->filepath = '';
         }
         if (null !== $this->getFile()) {
@@ -251,11 +249,11 @@ class UploadImage
         $this->getFile()->move($this->getUploadRootDir(), $this->getFilepath());
     
         // check if we have an old image
-        if (isset($this->tempPath)) {
+        if (!empty($this->tempPath)) {
             // delete the old image
             unlink($this->getUploadRootDir().'/'.$this->tempPath);
             // clear the temp image path
-            $this->tempPath = null;
+            $this->tempPath = '';
         }
         $this->file = null;
     }
@@ -274,6 +272,8 @@ class UploadImage
     {
         $this->name = '';
         $this->url = '';
+        $this->filepath = '';
+        $this->tempPath = '';
         $this->uploadDateTime = new \DateTime();
         $this->setFile($file);
     }
