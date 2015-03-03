@@ -1,7 +1,11 @@
 {% extends '::base.html.twig' %} 
 {% block body %}
 	{% block stylesheets %}
-	    <link href="{{ asset('css/common.css') }}" rel="stylesheet" />
+	    {% stylesheets '@common_css'
+               '@bootstrap_fileinput_css'
+        %}
+            <link href="{{ asset_url  }}" rel="stylesheet" />
+        {% endstylesheets %}
 	{% endblock %}
 	<!-- Navbar -->
 	{{ render_hinclude(controller('FundamentalCommonBundle:CommonView:nav')) }}
@@ -12,7 +16,10 @@
 %}
     <link href="{{ asset_url  }}" rel="stylesheet" />
 {% endstylesheets %}
-{% javascripts '@ContentArticleBundle/Resources/public/js/prism.js'  filter="uglifyjs2" %}
+{% javascripts '@ContentArticleBundle/Resources/public/js/prism.js'
+               '@bootstrap_fileinput_js'
+                filter="uglifyjs2" 
+%}
     <script src="{{ asset_url  }}"></script>
 {% endjavascripts %}
  {% form_theme form 'ContentArticleBundle:Article:bootstrap_3_layout_article.html.twig' %}
@@ -56,6 +63,8 @@
       </div>
   {{ form_end(form) }}
   <script type="text/javascript">
+      //change upload plugin params;
+      $.fn.fileinput.defaults.showUpload = false;
   	  var codeType = "language-cpp";
       $("#language-name").change(function(){
     	  codeType = $("#language-name option:selected").val();
@@ -110,7 +119,7 @@
 			      <div class="modal-body">
 			          <div class="form-group">
 			            <label for="image-file" class="control-label">Select File: </label>
-			            <input type="file" class="form-control" id="image-file" name="uploadedImage">
+			            <input type="file" class="file form-control" id="image-file" name="uploadedImage">
 			          </div>
 			      </div>
 			      <div class="modal-footer">
