@@ -12,24 +12,54 @@
     <link href="{{ asset_url  }}" rel="stylesheet" />
 {% endstylesheets %}
 	<div class="container-fluid page-content">
-	    {% for article in articles %}
-	    <div class="row col-md-offset-2 col-md-7 fade-in fade-in-{{ loop.index%7 }}">
-	    	<div class="row">
-	    		<div class="col-md-9">
-		    		<a href="{{ article.url }}" class="article-title"><strong>{{ article.title }}</strong></a><br />
-	    		</div>
-	    		<div class="col-md-3 datetime">
-	    			<small>{{ article.updateDateTime|date("m/d/Y H:i:s") }}</small>
-	    		</div>   
-	        </div>
-	        <div class="row">
-		        <span class="col-md-offset-1">
-		        	<article>{{  article.content|length > 200 ? article.content|slice(0, 200) ~ '...' : article.content }}
-		        		<a href="{{ article.url }}">Check Details</a>
-		        	</article>
-		        </span>
-	        </div>
+	    <div class="row">
+		    {% for article in articles %}
+		    <div class="row col-md-offset-2 col-md-7 fade-in fade-in-{{ loop.index%7 }}">
+		    	<div class="row">
+		    		<div class="col-md-9">
+			    		<a href="{{ article.url }}" class="article-title"><strong>{{ article.title }}</strong></a><br />
+		    		</div>
+		    		<div class="col-md-3 datetime">
+		    			<small>{{ article.updateDateTime|date("m/d/Y H:i:s") }}</small>
+		    		</div>   
+		        </div>
+		        <div class="row">
+			        <span class="col-md-offset-1">
+			        	<article>{{  article.content|length > 200 ? article.content|slice(0, 200) ~ '...' : article.content }}
+			        		<a href="{{ article.url }}">Check Details</a>
+			        	</article>
+			        </span>
+		        </div>
+		    </div>
+		    {% endfor %}
 	    </div>
-	    {% endfor %}
+	    <div class="row text-center">
+	      <nav>
+			  <ul class="pagination">
+			    {% if page > 0 %}
+				    <li>
+				      <a href="{{ pageBaseUrl }}{{ page - 1 }}" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+			    {% endif %}
+				{% for pageIndex in 0..pageCount %}
+				    {% if pageIndex == page %}
+				        <li class="active"><a href="{{ pageBaseUrl }}{{ pageIndex }}">{{ pageIndex }}</a></li>
+				    {% else %}
+				        <li><a href="{{ pageBaseUrl }}{{ pageIndex }}">{{ pageIndex }}</a></li>
+				    {% endif %}
+				{% endfor %}
+				{% if page < pageCount %}
+					<li>
+				      <a href="{{ pageBaseUrl }}{{ page + 1 }}" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+			    {% endif %}
+			  </ul>
+		  </nav>
+	    </div>
 	</div>
+	
 {% endblock %}
