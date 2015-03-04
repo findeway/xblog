@@ -15,3 +15,5 @@ Content\ArticleBundle\Entity\Article:
             - NotBlank: ~
         content:
             - NotBlank: ~
+        tags:
+            - NotBlank: ~
