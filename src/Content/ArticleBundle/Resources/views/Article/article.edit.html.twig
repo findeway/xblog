@@ -18,11 +18,13 @@
 {% endstylesheets %}
 {% javascripts '@ContentArticleBundle/Resources/public/js/prism.js'
                '@bootstrap_fileinput_js'
+               '@ContentArticleBundle/Resources/public/js/article.edit.js'
                 filter="uglifyjs2" 
 %}
     <script src="{{ asset_url  }}"></script>
 {% endjavascripts %}
  {% form_theme form 'ContentArticleBundle:Article:bootstrap_3_layout_article.html.twig' %}
+
  {{ form_start(form,{'attr': {'novalidate': 'novalidate','class':'page-content'}}) }}
       <div class="container-fluid">
 	      {{ form_errors(form) }}
@@ -47,56 +49,27 @@
 	          {{ form_errors(form.rate,{'attr': {'class': ''}}) }}
 	      </div>
 	      <div class="row-fluid col-md-offset-3 col-md-6 form-field">
-	          {{ form_label(form.content) }}
-	          {{ form_widget(form.content,{'attr': {'class': ''}}) }}
-	          {{ form_errors(form.content,{'attr': {'class': ''}}) }}
+	          <div>
+		          {{ form_label(form.content) }}
+		          <a href="javascript:void(0)" onclick="toggleEdit();" ><span id="btnEditorControl" class="article-control glyphicon glyphicon-pencil"></span></a>
+		          {{ form_widget(form.content,{'attr': {'class': ''}}) }}
+		          {{ form_errors(form.content,{'attr': {'class': ''}}) }}
+	          </div>
 	          <div class="code-insertor">
 		          <div class="btnInsertCode-right">
 		            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCode">Code</button>
 		            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalImage">Image</button>
 		          </div>
 	          </div>
-	      </div>
+	          <div id="contentPreview">
+              </div>
+          </div>
 	      <div class="row-fluid col-md-offset-3 col-md-6 form-field">
 	        {{ form_widget(form.save,{'attr': {'class': 'col-md-12 btn btn-success'}}) }}
 	      </div>
       </div>
   {{ form_end(form) }}
-  <script type="text/javascript">
-      //change upload plugin params;
-      $.fn.fileinput.defaults.showUpload = false;
-      
-  	  var codeType = "language-cpp";
-      $("#language-name").change(function(){
-    	  codeType = $("#language-name option:selected").val();
-      });
-      function onInsertCode(){
-          var content = $('#form_content').val();
-          var codeTemplate='<pre class="line-numbers '+codeType+'">\n<code class="'+codeType+'">\n'+$("#code-content").val()+'\n</code>\n</pre>';
-          codeTemplate = codeTemplate.replace(/\n/g,'\n\t');
-    	  $("#form_content").val(content+'\n'+codeTemplate);
-      }
-      $(document).ready(function(){
-    	  $('#formImageUpload').submit(function(event) {
-        	    var $form = $(this);
-                $.ajax({
-                    type: $form.attr('method'),
-                    url: $form.attr('action'),
-                    data: new FormData(this),
-                    mimeType:"multipart/form-data",
-                    contentType: false,
-                    processData:false,
-                    success: function(data) {
-                    	var content = $('#form_content').val();
-                        var imageTemplate='<img src="'+data+'">'
-                    	$("#form_content").val(content+'\n'+imageTemplate);
-                    }
-                });
-                $("#modalImage").modal('hide');
-                event.preventDefault();
-          });
-      });
-  </script>
+  
     <!-- modal for code editor -->
     <div class="modal fade" id="modalCode" tabindex="-1" role="dialog">
 	  <div class="modal-dialog">
