@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %} {% block stylesheets %}
+<link href="{{ asset('css/common.css') }}" rel="stylesheet" />
+{% endblock %} {% block body %}
+<!-- Navbar -->
+{{ render_hinclude(controller('FundamentalCommonBundle:CommonView:nav'))
+}}
+<!-- Header -->
+<div class="header">{{
+	render(controller('FundamentalCommonBundle:CommonView:header')) }}</div>
+	
+{% for type, messages in app.session.flashBag.all %} 
+    {% for message in messages %}
+        <div class="{{ type }}">{{ message|trans({}, 'FOSUserBundle') }}</div>
+    {% endfor %} 
+{% endfor %}
+{% form_theme form 'ContentArticleBundle:Article:bootstrap_3_layout_article.html.twig' %}
+<div>{% block fos_user_content %} {% endblock fos_user_content %}</div>
+
+{% endblock %}

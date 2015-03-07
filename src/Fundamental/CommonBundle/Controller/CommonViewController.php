@@ -53,6 +53,10 @@ class CommonViewController extends Controller
                 array(
                     "tag" => "Profile",
                     "link" => $this->generateUrl("content_articles_homepage")
+                ),
+                array(
+                    "tag" => "Logout",
+                    "link" => $this->generateUrl("fos_user_security_logout")
                 )
             ),
             "searchAction" => array(

@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Content\ArticleBundle\ContentArticleBundle(),
             new Content\UploadBundle\ContentUploadBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Fundamental\AccountBundle\AccountBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

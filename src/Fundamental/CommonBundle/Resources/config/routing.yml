@@ -1,11 +1,11 @@
 fundamental_common_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: FundamentalCommonBundle:CommonView:index }
+    path:     /
+    defaults: { _controller: FundamentalCommonBundle:CommonView:index ,name: guest}
 
 fundamental_common_navbar:
-    path:     /nav
+    path:     /common/nav
     defaults: { _controller: FundamentalCommonBundle:CommonView:nav }
     
 funcamental_common_header:
-    path:     /header
+    path:     /common/header
     defaults: { _controller: FundamentalCommonBundle:CommonView:header }
