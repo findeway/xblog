@@ -53,10 +53,16 @@ class CommonViewController extends Controller
                 array(
                     "tag" => "Profile",
                     "link" => $this->generateUrl("fos_user_profile_show")
-                ),
-                array(
+                )
+            ),
+            "Account" => array(
+                "login" => array(
                     "tag" => "Logout",
                     "link" => $this->generateUrl("fos_user_security_logout")
+                ),
+                "logout" => array(
+                    "tag" => "Login",
+                    "link" => $this->generateUrl("fos_user_security_login")
                 )
             ),
             "searchAction" => array(

@@ -40,14 +40,13 @@
 				        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Settings <span class="caret"></span></a>
 				        <ul class="dropdown-menu">
 				        {% for expand_item in navigation['Settings'] %}
-				            {% if expand_item['tag'] == 'Logout' %}
-				                {% if app.user %}
-				                    <li><a href="{{ expand_item['link'] }}">{{ expand_item['tag'] }}</a></li> 
-				                {% endif %}
-				            {% else %}
-				                <li><a href="{{ expand_item['link'] }}">{{ expand_item['tag'] }}</a></li> 
-				            {% endif %}           
+				            <li><a href="{{ expand_item['link'] }}">{{ expand_item['tag'] }}</a></li> 
 				        {% endfor %}
+		                {% if app.user %}
+		                    <li><a href="{{ navigation['Account']['login']['link'] }}">{{ navigation['Account']['login']['tag'] }}</a></li> 
+		                {% else %}
+		                    <li><a href="{{ navigation['Account']['logout']['link'] }}">{{ navigation['Account']['logout']['tag'] }}</a></li>
+		                {% endif %}
 				        </ul>
 				    </li>
 			    </ul>
