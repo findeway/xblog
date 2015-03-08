@@ -1,0 +1,18 @@
+services:
+    account_user.registration.form.type:
+        class: Fundamental\AccountBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: account_user_registration }
+            
+    account_user.profile.form.type:
+        class: Fundamental\AccountBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: account_user_profile }
+            
+    account_user.change_password.form.type:
+        class: Fundamental\AccountBundle\Form\Type\ChangePasswordFormType
+        arguments: [%fos_user.change_password.form.name%,%fos_user.change_password.form.type%]
+        tags:
+            - { name: form.type, alias: account_user_change_password }

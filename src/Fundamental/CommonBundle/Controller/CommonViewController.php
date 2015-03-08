@@ -52,7 +52,7 @@ class CommonViewController extends Controller
             "Settings" => array(
                 array(
                     "tag" => "Profile",
-                    "link" => $this->generateUrl("content_articles_homepage")
+                    "link" => $this->generateUrl("fos_user_profile_show")
                 ),
                 array(
                     "tag" => "Logout",

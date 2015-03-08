@@ -13,7 +13,6 @@
         <div class="{{ type }}">{{ message|trans({}, 'FOSUserBundle') }}</div>
     {% endfor %} 
 {% endfor %}
-{% form_theme form 'ContentArticleBundle:Article:bootstrap_3_layout_article.html.twig' %}
 <div>{% block fos_user_content %} {% endblock fos_user_content %}</div>
 
 {% endblock %}
