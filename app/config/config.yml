@@ -174,3 +174,17 @@ fos_user:
     change_password:
         form:
             type: account_user_change_password
+
+# logging system configuration
+monolog:
+    channels: ["applog"]
+    handlers:
+        applog:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.app.log"
+            level: info
+            channels: ["applog"]
+            formatter: monolog.formatter.line_formatter
+        syslog:
+            type: syslog
+            level: error
